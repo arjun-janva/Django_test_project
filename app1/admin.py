@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app1.models import Userregister,Category,Product
+from app1.models import Userregister,Category,Product,Contactus
 # Register your models here.
 
 class Userdisplay(admin.ModelAdmin):
@@ -15,3 +15,9 @@ class Productdisplay(admin.ModelAdmin):
     list_filter=['Name','Description']
     search_fields=['Name']
 admin.site.register(Product,Productdisplay) 
+
+class Contactus_display(admin.ModelAdmin):
+    list_display = ['name', 'surname', 'email', 'number','message' ]
+    list_filter = ['name', 'surname', 'email' ]
+    search_fields = ['name', 'email']
+admin.site.register(Contactus,Contactus_display)

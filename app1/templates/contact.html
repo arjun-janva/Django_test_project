@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..\static\css\contact.css">
+</head>
+
+<body>
+{% extends 'base.html' %}
+
+    {% block content %}
+
+    <div class="container">
+
+        <h1 class="brand"><span>Arjun'X Web Design</span></h1>
+
+        <div class="wrapper">
+
+            <!-- COMPANY INFORMATION -->
+            <div class="company-info">
+                <h3>Arjun'X Web Design</h3>
+
+                <ul>
+                    <li><i class="fa fa-road"></i> Visat-Gandhinagar</li>
+                    <li><i class="fa fa-phone"></i> +91 8511711448 </li>
+                    <li><i class="fa fa-envelope"></i> arjunjanva@gmail.com</li>
+                </ul>
+            </div>
+            <!-- End .company-info -->
+
+            <!-- CONTACT FORM -->
+            <div class="contact">
+                <h3>E-mail Us</h3>
+
+                <form id="contact-form" method="POST">
+                  {% csrf_token %}
+
+                    <p>
+                        <label>First Name</label>
+                        <input type="text" name="fname" id="name" required>
+                    </p>
+
+                    <p>
+                        <label>Surname</label>
+                        <input type="text" name="sname" id="company">
+                    </p>
+
+                    <p>
+                        <label>E-mail Address</label>
+                        <input type="email" name="email" id="email" required>
+                    </p>
+
+                    <p>
+                        <label>Phone Number</label>
+                        <input type="text" name="number" id="phone">
+                    </p>
+
+                    <p class="full">
+                        <label>Message</label>
+                        <textarea name="message" rows="5" id="message"></textarea>
+                    </p>
+
+                    <p class="full">
+                        <button type="submit">Submit</button>
+                    </p>
+
+                </form>
+                <!-- End #contact-form -->
+            </div>
+            <!-- End .contact -->
+
+        </div>
+        <!-- End .wrapper -->
+    </div>
+    <!-- End .container -->
+    
+        {% if m %}
+
+        <script> alert("{{m}}") </script>
+            
+        {% endif %}
+        
+    {% endblock %}
+
+</body>
+
+</html>

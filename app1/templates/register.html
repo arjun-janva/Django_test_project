@@ -11,14 +11,20 @@
             
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-              <form>
+              <form method="post">
+                {% csrf_token %}
   
                 <div class="row">
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="firstName" class="form-control form-control-lg" />
-                      <label class="form-label" for="firstName">Username
+                      <input type="text" name="fname" id="firstName"  class="form-control form-control-lg" />
+                      <label class="form-label" for="firstName">Name
+                      </label>
+                    </div>
+                    <div class="form-outline">
+                      <input type="email" name="email" id="email"  class="form-control form-control-lg" />
+                      <label class="form-label" for="firstName">Email
                       </label>
                     </div>
   
@@ -26,8 +32,8 @@
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="email" id="lastName" class="form-control form-control-lg" />
-                      <label class="form-label" for="lastName">Email</label>
+                      <input type="text" id="lastName" name="sname" class="form-control form-control-lg" />
+                      <label class="form-label" for="lastName">Surname</label>
                     </div>
   
                   </div>
@@ -37,12 +43,12 @@
                   <div class="col-md-6 mb-4 d-flex align-items-center">
   
                     <div class="form-outline">
-                        <input type="text" id="adress" class="form-control form-control-lg" />
+                        <input type="textarea" id="address" name="address" class="form-control form-control-lg" />
                         <label class="form-label" for="pass">Address</label>
                       </div>
   
                   </div>
-                  <div class="col-md-6 mb-4">
+                  <!-- <div class="col-md-6 mb-4">
   
                     <h6 class="mb-2 pb-1">Gender: </h6>
   
@@ -65,13 +71,13 @@
                     </div>
   
                   </div>
-                </div>
+                </div> -->
   
                 <div class="row">
                   <div class="col-md-6 mb-4 pb-2">
   
                     <div class="form-outline">
-                      <input type="password" id="emailAddress" class="form-control form-control-lg" />
+                      <input type="password" name="password" id="emailpassword" class="form-control form-control-lg" />
                       <label class="form-label" for="emailAddress">Password</label>
                     </div>
   
@@ -79,7 +85,7 @@
                   <div class="col-md-6 mb-4 pb-2">
   
                     <div class="form-outline">
-                      <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                      <input type="tel" id="phoneNumber" name="number" class="form-control form-control-lg" />
                       <label class="form-label" for="phoneNumber">Phone Number</label>
                     </div>
   

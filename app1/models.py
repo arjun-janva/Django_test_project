@@ -27,3 +27,12 @@ class Product(models.Model):
     Description = models.TextField(max_length=100,default=" ")
     def __str__(self) -> str:
         return self.Name
+
+class Contactus(models.Model):
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=20)
+    email = models.EmailField(max_length=200)
+    number = models.IntegerField()
+    message=models.TextField(max_length=250)
+    def __str__(self) ->str:
+        return str(self.name) + " " + str(self.surname)+ " " + str(self.email)+" "+ str(self.message)
