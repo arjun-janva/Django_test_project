@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="text" name="fname" value="{{user.name}}" id="firstName"
+                                            class="form-control form-control-lg" />
+                                        <label class="form-label" for="firstName">Name
+                                        </label>
+                                    </div>
+                                    <div class="form-outline">
+                                        <input type="email" name="email" value="{{user.email}}" id="email"
+                                            class="form-control form-control-lg" readonly />
+                                        <label class="form-label" for="firstName">Email
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="text" id="lastName" name="sname" value="{{user.surname}}"
+                                            class="form-control form-control-lg" />
+                                        <label class="form-label" for="lastName">Surname</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                                    <div class="form-outline">
+                                        <input type="textarea" id="address" name="address" value="{{user.address}}"
+                                            class="form-control form-control-lg" />
+                                        <label class="form-label" for="pass">Address</label>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="password" name="oldpassword" id="emailoldpassword"
+                                                class="form-control form-control-lg"  />
+                                            <label class="form-label" for="emailAddress">Entr old Password</label>
+                                        </div>
+
+                                        <div class="form-outline">
+                                            <input type="password" name="newpassword" id="emailnewpassword"
+                                                class="form-control form-control-lg" />
+                                            <label class="form-label" for="emailAddress">Enter new Password</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="tel" id="phoneNumber" name="number" value="{{user.number}}"
+                                                class="form-control form-control-lg" />
+                                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-4 pt-2">
+                                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                                </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if m %}
+
+        <script> alert("{{m}}") </script>
+            
+        {% endif %}
+
+
+{% endblock %}

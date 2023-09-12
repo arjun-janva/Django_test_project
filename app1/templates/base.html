@@ -27,10 +27,24 @@
         <li><a href="product-all">Product</a></li>
         <li><a href="contact">Contact Us</a></li>
       </ul>
+      
+      {% if request.session.email %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="order"><span class="glyphicon glyphicon-user"></span>Order's</a></li>
+        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+
+      {% else %}
+      
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/register/"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
         <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      </ul>  
+      
+      {% endif %}
+        
+      
     </div>
   </nav>  
 

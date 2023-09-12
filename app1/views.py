@@ -20,8 +20,11 @@ def productfilter(request,id):
     return render(request,'product.html',{'data':a})
 
 def product_details(request,id):
-    a = Product.objects.get(id=id)
-    return render(request,'product_details.html',{'data':a})
+    if 'email' in request.session:
+        a = Product.objects.get(id=id)
+        return render(request,'product_details.html',{'data':a})
+    else:
+        return redirect('login')
 
 def register(request):
     if request.method=="POST":
@@ -35,28 +38,32 @@ def register(request):
         data = Userregister.objects.filter(email=email1)
         if len(data)==0:
             user.save()
-            return redirect(login)
+            return redirect('login')
         else:
             return render(request,'register.html',{'m':'User with this email already exist'})
     return render(request,'register.html') 
 
 def login(request):
+            
     if request.method=='POST':
         email1=request.POST['email']
         password1=request.POST['password']
         try:
-            user=Userregister.object.get(email=email1,password=password1)
+            user= Userregister.objects.get(email=email1,password=password1)
             if user:
-                request.session['email'] =user.email
+                request.session['email'] = user.email
                 request.session['id'] = user.pk
-                return redirect(index1)
+                return redirect('index1')
+                print(request.session['email'],request.session['id'])
             else:
-                return render(request,'login.html',{'m':'invalid Credentials'})
+                return render(request,'login.html',{"m":"Invalid Credentials"})
         except:
-            return render(request,'login.html')
+            return render(request,'login.html',{"m":"Invalid Credentials"})
     return render(request,'login.html')
 
+
 def Contact_us(request):
+
     if request.method=="POST":
         fname2 = request.POST['fname']
         sname2 = request.POST['sname']
@@ -71,3 +78,41 @@ def Contact_us(request):
             return render(request,"contact.html")
 
     return render(request,'contact.html')
+
+def logout(request):
+    if 'email' in request.session:
+        del request.session['email']
+        del request.session['id']
+        return redirect('login')
+    else:
+        return redirect('login')
+
+
+def profile(request):
+    if 'email' in request.session:
+        user=Userregister.objects.get(email=request.session['email'])
+        if request.method == 'POST':
+            fname1=request.POST['fname']
+            sname1=request.POST['sname']
+            address1=request.POST['address']
+            oldpass=request.POST['oldpassword']
+            newpass=request.POST['newpassword']
+            number1=request.POST['number']
+            user.name=fname1
+            user.surname=sname1
+            user.address=address1
+            user.number=number1
+            if oldpass=="" and newpass=="":
+                user.save()
+                return render(request,'profile.html',{'user':user,'m':'profile is updated..'})
+            if user.password==oldpass:
+                user.password=newpass
+                user.save()
+                return render(request,'profile.html',{'user':user,'m':'profile is updated..'})
+            else:
+                return render(request,'profile.html',{'user':user,'m':'Invalid oldpassword, Please enter correct password'})
+        return render(request,'profile.html',{'user':user})
+    else:
+        return redirect('login')
+
+# def order(request):
